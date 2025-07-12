@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>For Someone Special</title>
+    <style>
+        body {
+            background: #FFEEF2;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 0;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 0.5s;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #E75480;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #90596B;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        button {
+            background: #E75480;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(231, 84, 128, 0.4);
+        }
+        .hidden {
+            display: none;
+            margin-top: 30px;
+        }
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 5s linear infinite;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin: 20px auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .scroll-hint {
+            color: #E75480;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+    </style>
+</head>
+<body>
+    <audio id="romanticMusic" loop>
+        <source src="wwd.mp3juice.blog - wave to earth - seasons (128 KBps).mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <h1>For You!</h1>
+        <p>Every moment with you is special...</p>
+        <img class="photo" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/72869e15-f147-4e6d-86e9-b059da84f4df.png" alt="Romantic sunset beach with couple silhouette holding hands" />
+        <button id="surpriseBtn">Click this!</button>
+        <p class="scroll-hint" id="scrollHint" style="display: none;">⬇️</p>
+        <div id="specialMessage" class="hidden">
+            <p>alam ko na nitong mga nakaraang araw, hindi naging maayos yung mga conversation natin. siguro nagsimula lahat nung nagyaya ako nung Monday alam ko na doon ka nagsimulang magalit o mainis sakin. dahil sa pag-aaya kong walang plano, parang pabigla-bigla lang, nakakadisappoint talaga. ang tagal na rin pero hindi ko pa rin nababago yung ugaling ‘yan, at kasalanan ko ‘yun. habang iniisip ko lahat ng ‘to, narealize ko rin na ang dami ko pang pagkukulang sa'yo. may mga bagay na dapat matagal ko nang ginagawa para sa’yo mga simpleng paraan para maparamdam ko kung gaano kita kamahal at pinapahalagahan. minsan mas inuuna ko pa kung anong nararamdaman ko kaysa intindihin kung anong kailangan mo at sorry ako dun.</p>
+            <p>alam ko na gusto mong maramdaman na espesyal ka, na parang reyna and gusto ko talaga gawin ‘yun para sa’yo. kasi deserve mo ‘yun. at mula ngayon, gusto kong ipakita, hindi lang sabihin, na ikaw ang mundo ko. gusto kitang tratuhin gaya ng gusto mo, gaya ng isang queen. minsan kasi, kaya hindi ko rin nagagawa agad ‘yung mga bagay na ‘yon lalo na ‘yung mga act of service kasi nagiging mahiyain na ako sa'yo. ang independent mo, kaya parang nagdadalawang-isip ako kung okay lang bang lumapit o gumawa ng mga bagay para sa'yo. pero ayoko nang maging dahilan ‘yan para di mo maramdaman kung gaano kita kamahal. gagawin ko pa rin, kahit kabado ako, dahil mahal kita.</p>
+        </div>
+    </div>
+
+    <div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+    <script>
+        function createHearts() {
+            const colors = ['#FF9EB7', '#FFC0D9', '#F8C8DC', '#FFB6C1'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 300);
+        }
+
+        document.getElementById('surpriseBtn').addEventListener('click', function () {
+            document.getElementById('specialMessage').style.display = 'block';
+            document.getElementById('scrollHint').style.display = 'block';
+            this.textContent = 'I Love You 💖';
+            createHearts();
+        });
+
+        setTimeout(() => {
+            document.querySelector('.container').style.opacity = '1';
+        }, 1000);
+
+        function toggleMusic() {
+            const music = document.getElementById('romanticMusic');
+            const toggle = document.querySelector('.music-toggle');
+            if (music.paused) {
+                music.play();
+                toggle.textContent = '🎵';
+            } else {
+                music.pause();
+                toggle.textContent = '🔇';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.addEventListener('click', function firstInteraction() {
+                document.getElementById('romanticMusic').play();
+                document.body.removeEventListener('click', firstInteraction);
+            });
+        });
+    </script>
+</body>
+</html>
